@@ -1,0 +1,79 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+.venv
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+/media
+/staticfiles
+/static
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# ChromaDB (exclude storage, but keep structure)
+chromadb_storage/
+*.chroma
+
+# Test files and outputs
+.pytest_cache/
+.coverage
+htmlcov/
+*.csv
+query_results_*/
+37a8eec1ce19687d/
+
+# Temporary files
+*.tmp
+*.bak
+*.swp
+
+# Build files
+build/
+dist/
+*.egg-info/
+
+# Documentation builds
+docs/_build/
+
+# Test scripts (not part of main codebase)
+test_*.py
+
+# Optional documentation (keep only required)
+POSTMAN_TESTING.md
+POSTMAN_DOCUMENT_UPLOAD.md
+QUICK_TEST.md
+EXPLORATION_GUIDE.md
+FLOW_DIAGRAM.md
+CODE_ANALYSIS.md
+VANNA_IMPLEMENTATION_NOTE.md
+VANNA_IMPLEMENTATION_STATUS.md
+VANNA_2.0_INTEGRATION.md
+REMAINING_TASKS.md
+REQUIREMENTS_CHECKLIST.md
+WHAT_IS_LEFT.md
+REPOSITORY_NAME_SUGGESTIONS.md
+RENDER_DEPLOYMENT_STEPS.md
+DEPLOY_NOW.md

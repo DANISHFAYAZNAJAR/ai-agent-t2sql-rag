@@ -1,0 +1,108 @@
+{
+  "timestamp": "2025-12-26T18:28:58.949148",
+  "total_test_cases": 6,
+  "results": [
+    {
+      "test_case": 1,
+      "input": "How many leads are there?",
+      "actual_output": "There are a total of **100 leads** in the database.",
+      "expected_output": "There should be 100 leads in the database",
+      "task_type": "t2sql",
+      "test_success": true,
+      "metrics": [
+        {
+          "name": "Answer Relevancy",
+          "score": 1.0,
+          "threshold": 0.7,
+          "success": true,
+          "reason": "The score is 1.00 because the answer was fully relevant and addressed the question directly without any irrelevant information. Great job staying focused!"
+        }
+      ]
+    },
+    {
+      "test_case": 2,
+      "input": "Show me all leads from Lumina Grand",
+      "actual_output": "I retrieved all leads associated with Lumina Grand from the database. The data includes relevant details such as lead names, emails, project names, unit types, budgets, and lead statuses.",
+      "expected_output": "Should return leads where project_name is 'Lumina Grand'",
+      "task_type": "t2sql",
+      "test_success": true,
+      "metrics": [
+        {
+          "name": "Answer Relevancy",
+          "score": 1.0,
+          "threshold": 0.7,
+          "success": true,
+          "reason": "The score is 1.00 because the response was fully relevant and directly addressed the request without any irrelevant information. Great job staying focused!"
+        }
+      ]
+    },
+    {
+      "test_case": 3,
+      "input": "Tell me about the features of Sobha Crest",
+      "actual_output": "I'm sorry, but there is no information available about Sobha Crest in the provided context. The details pertain to various Godrej properties, but Sobha Crest is not mentioned.",
+      "expected_output": "Should return a count grouped by project_name",
+      "task_type": "t2sql",
+      "test_success": true,
+      "metrics": [
+        {
+          "name": "Answer Relevancy",
+          "score": 1.0,
+          "threshold": 0.7,
+          "success": true,
+          "reason": "The score is 1.00 because the answer was fully relevant and focused on the features of Sobha Crest, with no irrelevant statements. Great job staying on topic!"
+        }
+      ]
+    },
+    {
+      "test_case": 4,
+      "input": "Count leads by project name",
+      "actual_output": "I have counted the leads by project name. Here are the results:\n- **Lumina Grand**: 22 leads\n- **Altura**: 18 leads\n- **Beachgate by Address**: 15 leads\n- **DLF WestPark**: 14 leads\n- **Godrej Vistas**: 10 leads\n- **Sobha Waves**: 9 leads\n- **Damac Bay by Cavalli**: 7 leads\n- **Sobha Crest**: 5 leads\nIf you need any further analysis or visualizations based on these results, feel free to ask!",
+      "expected_output": "Should return leads where min_budget or max_budget is above 1000000",
+      "task_type": "t2sql",
+      "test_success": true,
+      "metrics": [
+        {
+          "name": "Answer Relevancy",
+          "score": 1.0,
+          "threshold": 0.7,
+          "success": true,
+          "reason": "The score is 1.00 because the response was fully relevant and directly addressed the request to count leads by project name. Great job staying focused and concise!"
+        }
+      ]
+    },
+    {
+      "test_case": 5,
+      "input": "Find leads with budget above 1 million",
+      "actual_output": "It appears that the column for the specific budget you were looking for doesn't exist as \"budget,\" but instead, there are columns named `min_budget` and `max_budget` in the leads table.\nI have queried the leads with budgets above 1 million and saved the results to a file. You can view this file for the details. If you need further analysis or another specific query, please let me know!",
+      "expected_output": "Should provide information about amenities from the brochure",
+      "task_type": "rag",
+      "test_success": false,
+      "metrics": [
+        {
+          "name": "Answer Relevancy",
+          "score": 0.6,
+          "threshold": 0.7,
+          "success": false,
+          "reason": "The score is 0.60 because while the answer partially addresses the request to find leads with a budget above 1 million, it includes irrelevant statements about viewing a file and requesting further analysis, which distract from directly answering the input."
+        }
+      ]
+    },
+    {
+      "test_case": 6,
+      "input": "What are the amenities in Lumina Grand?",
+      "actual_output": "Lumina Grand offers a variety of amenities for residents, including:\n\n- **50m Lap Pool**\n- **BBQ Pavilion**\n- **Kids Play Zone**\n- **Pets Play Area**\n- **Residents' Dance Room**\n- **Tennis Court**\n- **Gymnasium**\n- **Reading Lounge**\n- **EV Charging Stations**\n\nThese amenities cater to both relaxation and recreational activities, ensuring that there is something for everyone in the family.",
+      "expected_output": "Should provide information about property features from the brochure",
+      "task_type": "rag",
+      "test_success": true,
+      "metrics": [
+        {
+          "name": "Answer Relevancy",
+          "score": 1.0,
+          "threshold": 0.7,
+          "success": true,
+          "reason": "The score is 1.00 because the answer was fully relevant and addressed the question directly without any irrelevant information. Great job staying focused and concise!"
+        }
+      ]
+    }
+  ]
+}
