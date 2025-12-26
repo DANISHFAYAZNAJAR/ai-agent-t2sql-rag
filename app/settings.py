@@ -30,7 +30,15 @@ SECRET_KEY = os.getenv('SECRET_KEY', 'django-insecure-aa*6pw47u4rxg&0a#1uzhz4o3h
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.getenv('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+# ALLOWED_HOSTS: Comma-separated list of allowed hosts
+# For Render: Set ALLOWED_HOSTS=your-app-name.onrender.com in environment variables
+allowed_hosts_str = os.getenv('ALLOWED_HOSTS', 'localhost,127.0.0.1')
+ALLOWED_HOSTS = [host.strip() for host in allowed_hosts_str.split(',') if host.strip()]
+
+# If on Render (detected by RENDER environment variable), allow all hosts if not explicitly set
+# This is a fallback - it's better to set ALLOWED_HOSTS explicitly
+if os.getenv('RENDER') and not os.getenv('ALLOWED_HOSTS'):
+    ALLOWED_HOSTS = ['*']
 
 
 # Application definition
