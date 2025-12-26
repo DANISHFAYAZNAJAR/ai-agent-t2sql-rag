@@ -174,4 +174,4 @@ JWT_ACCESS_TOKEN_EXPIRE_MINUTES = int(os.getenv('JWT_ACCESS_TOKEN_EXPIRE_MINUTES
 CHROMADB_PATH = os.getenv('CHROMADB_PATH', str(BASE_DIR / 'chromadb_storage'))
 
 # Vanna Configuration
-VANNA_MODEL = os.getenv('VANNA_MODEL', 'proplens_vanna')
+VANNA_MODEL = os.getenv('VANNA_MODEL', 'agent_vanna')

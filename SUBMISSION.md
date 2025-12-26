@@ -53,7 +53,7 @@
 ## 📦 Submission Artifacts
 
 ### 1. Source Code
-- Complete project in `proplens-agent/` directory
+- Complete project in `ai-agent/` directory
 - All source files organized and documented
 
 ### 2. Documentation
@@ -116,7 +116,7 @@ Once deployed, the live link will be available.
 
 ## 📧 Submission
 
-**Email**: careers@proplens.ai
+**Email**: [Submission email address]
 
 **Include**:
 1. Link to GitHub repository (or ZIP file)

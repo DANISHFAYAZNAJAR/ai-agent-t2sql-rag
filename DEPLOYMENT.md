@@ -1,6 +1,6 @@
 # Deployment Guide
 
-This guide explains how to deploy the Proplens AI Agent to Render (or similar cloud platforms).
+This guide explains how to deploy the AI Agent to Render (or similar cloud platforms).
 
 ## Prerequisites
 
@@ -21,7 +21,7 @@ This guide explains how to deploy the Proplens AI Agent to Render (or similar cl
 2. Click "New +" → "Web Service"
 3. Connect your repository
 4. Configure the service:
-   - **Name**: `proplens-agent`
+   - **Name**: `ai-agent`
    - **Environment**: `Python 3`
    - **Build Command**: `pip install -r requirements.txt && python manage.py migrate`
    - **Start Command**: `gunicorn app.wsgi:application`
@@ -45,7 +45,7 @@ ALLOWED_HOSTS=your-app-name.onrender.com
 If using PostgreSQL:
 
 1. In Render Dashboard, click "New +" → "PostgreSQL"
-2. Name it `proplens-db`
+2. Name it `agent-db`
 3. Copy the `DATABASE_URL` from the database settings
 4. Add it as an environment variable in your web service
 

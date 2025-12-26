@@ -1,4 +1,4 @@
-# Proplens AI Agent
+# AI Agent - Text-to-SQL and Document RAG
 
 Intelligent agent system for Text-to-SQL and Document RAG capabilities, built with Django Ninja, LangGraph, and Vanna.
 
@@ -31,7 +31,7 @@ Intelligent agent system for Text-to-SQL and Document RAG capabilities, built wi
 
 1. Clone the repository and navigate to the project directory:
 ```bash
-cd proplens-agent
+cd ai-agent
 ```
 
 2. Create and activate virtual environment:
@@ -58,7 +58,7 @@ python manage.py migrate
 
 6. Load CRM data:
 ```bash
-python manage.py load_leads "../Proplens AI Engineer_Challenge/Mock CRM leads for nurturing.xlsx"
+python manage.py load_leads "../data/Mock CRM leads for nurturing.xlsx"
 ```
 
 7. Run the server:
@@ -110,7 +110,7 @@ This will generate `agent_evaluation_scores.json` with evaluation results.
 ## Project Structure
 
 ```
-proplens-agent/
+ai-agent/
 ├── app/                    # Django project settings
 ├── api/                    # API endpoints
 │   ├── auth.py            # JWT authentication
@@ -183,5 +183,5 @@ The project follows:
 
 ## License
 
-This project is part of the Proplens AI Engineer Challenge.
+This project demonstrates an intelligent agent system with Text-to-SQL and Document RAG capabilities.
 

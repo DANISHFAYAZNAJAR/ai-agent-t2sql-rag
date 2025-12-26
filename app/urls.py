@@ -10,7 +10,7 @@ from api.documents import router as documents_router
 
 # Create Django Ninja API instance
 api = NinjaAPI(
-    title="Proplens AI Agent API",
+    title="AI Agent API",
     description="Intelligent agent API for Text-to-SQL and Document RAG",
     version="1.0.0",
 )

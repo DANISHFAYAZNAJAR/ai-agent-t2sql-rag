@@ -58,7 +58,7 @@ def get_vanna_agent():
         db_tool = RunSqlTool(sql_runner=sql_runner)
         
         # 3. Configure Agent Memory (ChromaDB)
-        model_name = getattr(settings, 'VANNA_MODEL', 'proplens_vanna')
+        model_name = getattr(settings, 'VANNA_MODEL', 'agent_vanna')
         agent_memory = ChromaAgentMemory(
             collection_name=f"{model_name}_training",
             persist_directory=chromadb_path
