@@ -1,6 +1,4 @@
-"""
-Main agent query endpoint
-"""
+"""Agent query endpoint"""
 from ninja import Router
 from ninja.responses import Response
 from pydantic import BaseModel
@@ -26,15 +24,10 @@ class QueryResponse(BaseModel):
 
 @router.post("/query", response=QueryResponse, auth=AuthBearer())
 def query_agent(request, query_data: QueryRequest):
-    """
-    Submit a query to the AI agent
-    The agent will route to either Text-to-SQL or Document RAG based on the query
-    """
+    """Submit a query to the AI agent"""
     try:
-        # Get the agent graph
         agent = get_agent()
         
-        # Initialize state
         initial_state = {
             "query": query_data.query,
             "route": "unknown",
@@ -45,10 +38,7 @@ def query_agent(request, query_data: QueryRequest):
             "error": ""
         }
         
-        # Invoke the agent
         result = agent.invoke(initial_state)
-        
-        # Extract response
         response = result.get("response", "I couldn't process your query.")
         task_type = result.get("task_type", "unknown")
         metadata = result.get("metadata", {})

@@ -1,6 +1,4 @@
-"""
-Document ingestion endpoints
-"""
+"""Document ingestion endpoints"""
 from ninja import Router
 from ninja import File
 from ninja.files import UploadedFile
@@ -27,19 +25,14 @@ class DocumentUploadResponse(BaseModel):
 
 @router.post("/upload", response=DocumentUploadResponse, auth=AuthBearer())
 def upload_document(request, file: UploadedFile = File(...)):
-    """
-    Upload a brochure document for ingestion
-    Processes the document: chunking, embedding, and storing in ChromaDB
-    """
+    """Upload a brochure document for ingestion"""
     try:
-        # Save uploaded file temporarily
         with tempfile.NamedTemporaryFile(delete=False, suffix='.pdf') as tmp_file:
             for chunk in file.chunks():
                 tmp_file.write(chunk)
             tmp_file_path = tmp_file.name
         
         try:
-            # Ingest the document
             result = document_service.ingest_document(
                 file_path=tmp_file_path,
                 document_metadata={"filename": file.name}
@@ -51,7 +44,6 @@ def upload_document(request, file: UploadedFile = File(...)):
                 chunks_created=result.get("chunks_created", 0)
             )
         finally:
-            # Clean up temporary file
             if os.path.exists(tmp_file_path):
                 os.unlink(tmp_file_path)
                 
@@ -69,11 +61,8 @@ def upload_document(request, file: UploadedFile = File(...)):
 
 @router.get("/list", auth=AuthBearer())
 def list_documents(request):
-    """
-    List all ingested documents
-    """
+    """List all ingested documents"""
     try:
-        # Get collection info
         info = document_service.chromadb_manager.get_collection_info()
         return {
             "documents_count": info.get("count", 0),

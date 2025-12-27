@@ -12,10 +12,18 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 import os
+import warnings
 from dotenv import load_dotenv
 
 # Load environment variables
 load_dotenv()
+
+# Suppress ONNX Runtime GPU detection warnings (we're using CPU only)
+# This prevents warnings about GPU device discovery failures on Render
+os.environ.setdefault('CUDA_VISIBLE_DEVICES', '')
+# Suppress warnings from onnxruntime module
+warnings.filterwarnings('ignore', message='.*GPU device discovery.*')
+warnings.filterwarnings('ignore', message='.*device_discovery.*')
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent

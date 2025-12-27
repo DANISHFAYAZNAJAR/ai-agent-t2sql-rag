@@ -1,6 +1,4 @@
-"""
-Document RAG tool for LangGraph agent
-"""
+"""Document RAG tool"""
 from typing import Dict, Any, List
 import logging
 from langchain_openai import ChatOpenAI
@@ -15,7 +13,6 @@ class DocumentRAGTool:
     """Tool for retrieving information from brochure documents using RAG"""
     
     def __init__(self):
-        """Initialize the Document RAG tool"""
         self.document_service = DocumentIngestionService()
         self.llm = ChatOpenAI(
             model="gpt-4o-mini",
@@ -23,7 +20,6 @@ class DocumentRAGTool:
             openai_api_key=settings.OPENAI_API_KEY
         )
         
-        # Create prompt template for synthesizing answers
         self.prompt_template = ChatPromptTemplate.from_messages([
             ("system", """You are a helpful real estate assistant. 
             Answer questions about property projects based on the provided brochure information.
@@ -39,18 +35,8 @@ Provide a clear and helpful answer:""")
         ])
     
     def execute(self, query: str, n_results: int = 5) -> Dict[str, Any]:
-        """
-        Execute a Document RAG query
-        
-        Args:
-            query: Natural language query about property brochures
-            n_results: Number of relevant chunks to retrieve
-        
-        Returns:
-            Dictionary with retrieved context, answer, and metadata
-        """
+        """Execute a Document RAG query"""
         try:
-            # Search for relevant document chunks
             search_results = self.document_service.search_documents(
                 query=query,
                 n_results=n_results
@@ -64,11 +50,8 @@ Provide a clear and helpful answer:""")
                     "success": False
                 }
             
-            # Extract context from search results
             context_texts = [result["text"] for result in search_results]
             context = "\n\n---\n\n".join(context_texts)
-            
-            # Generate answer using LLM
             prompt = self.prompt_template.format_messages(
                 context=context,
                 question=query
@@ -94,6 +77,5 @@ Provide a clear and helpful answer:""")
             }
     
     def __call__(self, query: str) -> Dict[str, Any]:
-        """Make the tool callable"""
         return self.execute(query)
 

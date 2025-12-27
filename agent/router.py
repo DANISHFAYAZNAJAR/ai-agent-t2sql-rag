@@ -1,6 +1,4 @@
-"""
-Router logic for determining whether to use T2SQL or Document RAG
-"""
+"""Router for T2SQL or Document RAG"""
 from typing import Literal
 import logging
 from langchain_openai import ChatOpenAI
@@ -13,21 +11,18 @@ class QueryRouter:
     """Route queries to appropriate tool (T2SQL or Document RAG)"""
     
     def __init__(self):
-        """Initialize the router"""
         self.llm = ChatOpenAI(
             model="gpt-4o-mini",
             temperature=0,
             openai_api_key=settings.OPENAI_API_KEY
         )
         
-        # Keywords that indicate T2SQL queries
         self.t2sql_keywords = [
             "lead", "leads", "crm", "customer", "budget", "status",
             "count", "find", "show", "list", "filter", "query",
             "database", "table", "how many", "which leads"
         ]
         
-        # Keywords that indicate Document RAG queries
         self.rag_keywords = [
             "amenities", "facilities", "features", "project", "property",
             "brochure", "location", "price", "pricing", "specifications",
@@ -35,26 +30,12 @@ class QueryRouter:
         ]
     
     def classify_query(self, query: str) -> Literal["t2sql", "rag", "unknown"]:
-        """
-        Classify query to determine which tool to use
-        
-        Args:
-            query: User query
-        
-        Returns:
-            "t2sql", "rag", or "unknown"
-        """
+        """Classify query to determine which tool to use"""
         query_lower = query.lower()
-        
-        # Check for explicit keywords
         t2sql_score = sum(1 for keyword in self.t2sql_keywords if keyword in query_lower)
         rag_score = sum(1 for keyword in self.rag_keywords if keyword in query_lower)
-        
-        # Use LLM for classification if scores are close or unclear
         if abs(t2sql_score - rag_score) < 2 or (t2sql_score == 0 and rag_score == 0):
             return self._llm_classify(query)
-        
-        # Return based on keyword scores
         if t2sql_score > rag_score:
             return "t2sql"
         elif rag_score > t2sql_score:
@@ -63,15 +44,7 @@ class QueryRouter:
             return self._llm_classify(query)
     
     def _llm_classify(self, query: str) -> Literal["t2sql", "rag"]:
-        """
-        Use LLM to classify the query
-        
-        Args:
-            query: User query
-        
-        Returns:
-            "t2sql" or "rag"
-        """
+        """Use LLM to classify the query"""
         try:
             prompt = f"""Classify the following query to determine which tool should handle it:
 
@@ -89,12 +62,10 @@ class QueryRouter:
             if classification in ["t2sql", "rag"]:
                 return classification
             else:
-                # Default fallback
                 logger.warning(f"Unexpected classification: {classification}, defaulting to rag")
                 return "rag"
                 
         except Exception as e:
             logger.error(f"Error in LLM classification: {str(e)}")
-            # Default fallback
             return "rag"
 

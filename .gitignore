@@ -37,6 +37,10 @@ Thumbs.db
 chromadb_storage/
 *.chroma
 
+# Logs
+logs/
+*.log
+
 # Test files and outputs
 .pytest_cache/
 .coverage
@@ -59,21 +63,7 @@ dist/
 docs/_build/
 
 # Test scripts (not part of main codebase)
-test_*.py
+# Note: test_*.py files in root should be removed (tests are in tests/ directory)
 
-# Optional documentation (keep only required)
-POSTMAN_TESTING.md
-POSTMAN_DOCUMENT_UPLOAD.md
-QUICK_TEST.md
-EXPLORATION_GUIDE.md
-FLOW_DIAGRAM.md
-CODE_ANALYSIS.md
-VANNA_IMPLEMENTATION_NOTE.md
-VANNA_IMPLEMENTATION_STATUS.md
-VANNA_2.0_INTEGRATION.md
-REMAINING_TASKS.md
-REQUIREMENTS_CHECKLIST.md
-WHAT_IS_LEFT.md
-REPOSITORY_NAME_SUGGESTIONS.md
-RENDER_DEPLOYMENT_STEPS.md
-DEPLOY_NOW.md
+# Temporary SQLite files
+file:memorydb*
